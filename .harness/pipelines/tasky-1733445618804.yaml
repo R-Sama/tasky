@@ -43,12 +43,14 @@ pipeline:
         spec:
           deploymentType: Kubernetes
           service:
-            serviceRef: taskyeksservice
+            serviceRef: <+input>
+            serviceInputs: <+input>
           environment:
-            environmentRef: eksenv
+            environmentRef: <+input>
             deployToAll: false
-            infrastructureDefinitions:
-              - identifier: eksinfra
+            environmentInputs: <+input>
+            serviceOverrideInputs: <+input>
+            infrastructureDefinitions: <+input>
           execution:
             steps:
               - stepGroup:
@@ -66,14 +68,15 @@ pipeline:
                               percentage: 10
                             type: Percentage
                           skipDryRun: false
-                          delegateSelectors:
-                            - kubernetes-delegate
+                          delegateSelectors: <+input>
                     - step:
                         name: Canary Delete
                         identifier: canaryDelete
                         type: K8sCanaryDelete
                         timeout: 10m
-                        spec: {}
+                        spec:
+                          delegateSelectors:
+                            - kubernetes-delegate
               - stepGroup:
                   name: Primary Deployment
                   identifier: primaryDeployment
@@ -85,6 +88,9 @@ pipeline:
                         timeout: 10m
                         spec:
                           skipDryRun: false
+                          pruningEnabled: false
+                          delegateSelectors:
+                            - kubernetes-delegate
             rollbackSteps:
               - step:
                   name: Canary Delete
