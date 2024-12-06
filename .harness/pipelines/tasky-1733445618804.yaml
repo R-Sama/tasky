@@ -66,27 +66,14 @@ pipeline:
                               percentage: 10
                             type: Percentage
                           skipDryRun: false
+                          delegateSelectors:
+                            - kubernetes-delegate
                     - step:
                         name: Canary Delete
                         identifier: canaryDelete
                         type: K8sCanaryDelete
                         timeout: 10m
                         spec: {}
-              - step:
-                  type: HarnessApproval
-                  name: Approval
-                  identifier: Approval
-                  spec:
-                    approvalMessage: Please review the following information and approve the pipeline progression
-                    includePipelineExecutionHistory: true
-                    isAutoRejectEnabled: false
-                    approvers:
-                      userGroups:
-                        - account._account_all_users
-                      minimumCount: 1
-                      disallowPipelineExecutor: false
-                    approverInputs: []
-                  timeout: 1d
               - stepGroup:
                   name: Primary Deployment
                   identifier: primaryDeployment
