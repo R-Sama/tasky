@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_R_Sama_tasky_1733445639506-push-trigger-input-set
+  identifier: Build_R_Sama_tasky_1733445639506pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: eks
+  pipeline:
+    identifier: Build_R_Sama_tasky_1733445639506
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
