@@ -23,10 +23,7 @@ spec:
         - containerPort: 8080
         env:
         - name: MONGODB_URI
-          valueFrom:
-            secretKeyRef:
-              name: mongodb-secret
-              key: MONGODB_URI
+          value: "mongodb://tasky-user:securepassword@18.133.31.234:27017/tasky-db"
         resources:
           requests:
             memory: "128Mi"
