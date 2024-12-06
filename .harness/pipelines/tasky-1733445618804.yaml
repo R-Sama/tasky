@@ -68,15 +68,14 @@ pipeline:
                               percentage: 10
                             type: Percentage
                           skipDryRun: false
-                          delegateSelectors: <+input>
+                          delegateSelectors:
+                            - ""
                     - step:
                         name: Canary Delete
                         identifier: canaryDelete
                         type: K8sCanaryDelete
                         timeout: 2m
-                        spec:
-                          delegateSelectors:
-                            - kubernetes-delegate
+                        spec: {}
               - stepGroup:
                   name: Primary Deployment
                   identifier: primaryDeployment
