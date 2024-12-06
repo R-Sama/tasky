@@ -1,0 +1,34 @@
+inputSet:
+  pipeline:
+    identifier: Build_R_Sama_tasky_1733445639506
+    stages:
+      - stage:
+          identifier: Build
+          type: CI
+          spec:
+            execution:
+              steps:
+                - step:
+                    identifier: GitClone
+                    type: GitClone
+                    spec:
+                      connectorRef: account.Github_OAuth_1733445397972
+                      repoName: tasky
+    properties:
+      ci:
+        codebase:
+          build:
+            spec:
+              branch: main
+            type: branch
+    provider:
+      type: Others
+      titleLabelKey: common.thirdPartyGitProvider
+      descriptionLabelKey: common.thirdPartyGitProviderInfo
+      icon: service-github
+      size: 20
+      disabled: false
+  name: tasky
+  identifier: tasky
+  orgIdentifier: default
+  projectIdentifier: eks
