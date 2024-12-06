@@ -9,7 +9,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: tasky
+      app: tasky 
   template:
     metadata:
       labels:
@@ -18,12 +18,12 @@ spec:
       containers:
       - name: tasky
         image: realfiction/tasky-app:latest
-        imagePullPolicy: Always  
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         env:
         - name: MONGODB_URI
-          value: "mongodb://tasky-user:securepassword@18.133.31.234:27017/tasky-db"
+          value: mongodb://tasky-user:securepassword@18.133.31.234:27017/tasky-db
         resources:
           requests:
             memory: "128Mi"
@@ -43,5 +43,5 @@ spec:
             port: 8080
           initialDelaySeconds: 5
           periodSeconds: 30
-      nodeSelector:  # Optional: Specify node placement if needed
+      nodeSelector:
         kubernetes.io/arch: amd64
