@@ -1,0 +1,36 @@
+inputSet:
+  pipeline:
+    identifier: Build_R_Sama_tasky_1733445639506
+    stages:
+      - stage:
+          identifier: deploy
+          type: Deployment
+          spec:
+            service:
+              serviceRef: taskyeksservice
+            environment:
+              environmentRef: eksenv
+              infrastructureDefinitions:
+                - identifier: eksinfra
+            execution:
+              steps:
+                - stepGroup:
+                    identifier: canaryDeployment
+                    steps:
+                      - step:
+                          identifier: canaryDeployment
+                          type: K8sCanaryDeploy
+                          spec:
+                            delegateSelectors:
+                              - kubernetes-delegate
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: main
+  name: tasky2
+  identifier: tasky2
+  orgIdentifier: default
+  projectIdentifier: eks
