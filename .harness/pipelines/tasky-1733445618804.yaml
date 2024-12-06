@@ -61,7 +61,7 @@ pipeline:
                         name: Canary Deployment
                         identifier: canaryDeployment
                         type: K8sCanaryDeploy
-                        timeout: 10m
+                        timeout: 2m
                         spec:
                           instanceSelection:
                             spec:
@@ -73,7 +73,7 @@ pipeline:
                         name: Canary Delete
                         identifier: canaryDelete
                         type: K8sCanaryDelete
-                        timeout: 10m
+                        timeout: 2m
                         spec:
                           delegateSelectors:
                             - kubernetes-delegate
