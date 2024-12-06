@@ -25,7 +25,7 @@ pipeline:
                   identifier: BuildAndPushDockerRegistry_1
                   spec:
                     connectorRef: account.dockeraccountconnector
-                    repo: tasky-app
+                    repo: realfiction/tasky-app
                     tags:
                       - latest
           platform:
