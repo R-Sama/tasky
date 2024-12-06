@@ -2,11 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tasky-app
-  namespace: default
+  namespace: tasky-app
   labels:
     app: tasky
-  annotations:
-    kubernetes.io/change-cause: "Initial deployment of tasky-app with best practices"
 spec:
   replicas: 1
   selector:
@@ -25,7 +23,10 @@ spec:
         - containerPort: 8080
         env:
         - name: MONGODB_URI
-          value: "mongodb://tasky-user:securepassword@18.133.31.234:27017/tasky-db"
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: MONGODB_URI
         resources:
           requests:
             memory: "128Mi"
